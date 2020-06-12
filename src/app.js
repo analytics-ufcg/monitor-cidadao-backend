@@ -10,13 +10,16 @@ const app = express();
 
 // ==> Rotas da API:
 const licitacoesRoute = require('./routes/licitacoes.routes');
+const regioesRoute = require('./routes/regioes.routes');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.json({ type: 'application/vnd.api+json' }));
 app.use(cors());
 
+// Adicione novas rotas abaixo
 app.use('/api/', licitacoesRoute);
+app.use('/api/', regioesRoute);
 
 module.exports = app;
 
