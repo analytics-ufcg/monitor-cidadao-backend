@@ -11,7 +11,7 @@ module.exports = (sequelize, type) => {
                 type: type.STRING,
                 primaryKey: true
             },
-            cd_municipio: type.INTEGER,
+            cd_municipio: type.STRING,
             cd_u_gestora: type.INTEGER,
             dt_ano: type.INTEGER,
             nu_licitacao: type.STRING,
