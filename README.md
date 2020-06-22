@@ -11,17 +11,12 @@ A execução do back-end pode ser feita de duas maneiras: via **docker** ou exec
 
 Antes de tudo, para executar tanto manualmente quanto com o docker, adicione as informações do SQLServer SAGRES 2019 no .env (essas informações estão no arquivo '07 - Instruções e Acessos Monitor Cidadão') .
 
-- SQLSERVER_SAGRES19_HOST
+- POSTGRES_HOST
+- POSTGRES_DB
+- POSTGRES_USER
+- POSTGRES_PASSWORD
+- POSTGRES_PORT
 
-- SQLSERVER_SAGRES19_Database
-
-- SQLSERVER_SAGRES19_USER
-
-- SQLSERVER_SAGRES19_PASS
-
-- SQLSERVER_SAGRES19_PORT
-
-  
  ### Executando back-end manualmente
 
 Caso queira executar o back-end sem o docker, garanta que você tenha instalado em sua máquina o **nodejs**, **npm** e o **nodemon**.
