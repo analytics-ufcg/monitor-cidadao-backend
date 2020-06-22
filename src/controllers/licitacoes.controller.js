@@ -37,12 +37,3 @@ exports.getLicitacaoById = (req, res) => {
     .then(licitacoes => res.json(licitacoes))
     .catch(err => res.status(BAD_REQUEST).json({ err }));
 }
-
-exports.getLicitacoes = async (req, res) => {
-    Licitacao.findAll({where: { 
-        de_obs: { [Op.ne]: null },
-        nu_licitacao: '000000000' 
-    }})
-    .then(licitacoes => res.status(SUCCESS).json(licitacoes))
-    .catch(err => res.status(BAD_REQUEST).json({ err }));
-};
