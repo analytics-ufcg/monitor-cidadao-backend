@@ -7,7 +7,7 @@ module.exports = (sequelize, type) => {
     Licitacao = sequelize.define(
         "licitacao",
         {
-            id_licitacao: { 
+            id_licitacao: {
                 type: type.STRING,
                 primaryKey: true
             },
@@ -30,5 +30,12 @@ module.exports = (sequelize, type) => {
             timestamps: false
         }
     );
+    Licitacao.associate = function (models) {
+        Licitacao.hasMany(models.contrato, {
+            foreignKey: "id_licitacao",
+            sourceKey: "id_licitacao",
+            as: "contratosLicitacao"
+        });
+    }
     return Licitacao;
 };

@@ -5,6 +5,7 @@
  */
 
 const models = require("../models/index.model");
+const Contrato = models.contrato;
 const Licitacao = models.licitacao;
 const Op = models.Sequelize.Op;
 
@@ -30,6 +31,12 @@ exports.getLicitacaoById = (req, res) => {
     const id = req.params.id
 
     Licitacao.findOne({
+        include: [
+            {
+                model: Contrato,
+                as: "contratosLicitacao"
+            }
+        ],
         where: {
             id_licitacao: id,
         }

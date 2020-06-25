@@ -19,4 +19,10 @@ global.models = {
     contrato: sequelize.import(ContratoModel)
 };
 
+Object.keys(global.models).forEach(modelName => {
+    if (global.models[modelName].associate !== undefined) {
+      global.models[modelName].associate(global.models);
+    }
+  });
+
 module.exports = global.models;
