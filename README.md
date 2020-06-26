@@ -1,4 +1,4 @@
-# Monitor Cidadão - Backend
+# Monitor Cidadão (back-end)
 
 O Monitor Cidadão é um sistema desenvolvido através da parceria entre a CampinaTec e o laboratório Analytics da Universidade Federal de Campina Grande-PB com finalidade possibilitar aos cidadãos o acompanhamento dos contratos realizados pelos municípios do estado da Paraíba.
 
@@ -8,11 +8,18 @@ O Monitor Cidadão é um sistema desenvolvido através da parceria entre a Campi
 O projeto surge a partir da urgente necessidade de acompanhamento e fiscalização dos gastos públicos em licitações e contratos, com o intúito de facilitar o acesso da comunidade aos dados e o que eles representam.
 
 
+## Back-end
+
+Aqui encontra-se o back-end da aplicação, que foi desenvolvido em Node jS. Funciona em conjunto com o front-end localizado nesse [repositório](https://github.com/analytics-ufcg/monitor-cidadao-frontend).
+
+
 ## Tecnologias/frameworks usados
 
 <b>Desenvolvido com</b>
+
 - [JavaScript](https://www.javascript.com/)
-- [Dockerfile](https://www.docker.com/)
+- [Node JS](https://nodejs.org/en/about/)
+- [Docker](https://www.docker.com/)
 
 
 ## Executando o back-end
