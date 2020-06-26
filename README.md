@@ -10,7 +10,7 @@ O projeto surge a partir da urgente necessidade de acompanhamento e fiscalizaç�
 
 ## Back-end
 
-Aqui encontra-se o back-end da aplicação, que foi desenvolvido em Node jS. Funciona em conjunto com o front-end localizado nesse [repositório](https://github.com/analytics-ufcg/monitor-cidadao-frontend).
+Aqui encontra-se o back-end da aplicação, que foi desenvolvido em Node JS. Funciona em conjunto com o front-end localizado nesse [repositório](https://github.com/analytics-ufcg/monitor-cidadao-frontend).
 
 
 ## Tecnologias/frameworks usados
@@ -47,5 +47,5 @@ Você pode testar se tudo deu certo com o link abaixo:
 >  [http://localhost:3000/api/licitacoes](http://localhost:3000/api/licitacoes)
 
 ### Executando back-end via docker
-O docker-compose está configurado para executar tanto o back-end quanto o front-end. Sendo assim, as instruções para executar ambos projetos foram adicionadas no **monitor-cidadao-frontend**.
+O docker-compose está configurado para executar tanto o back-end quanto o front-end. Sendo assim, as instruções para executar ambos projetos foram adicionadas no **Monitor Cidadão (front-end)**.
 
