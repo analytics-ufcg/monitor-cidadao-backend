@@ -10,15 +10,13 @@ require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
 // configurações dos bancos de dados
 module.exports = {
-    SAGRES: {
-        username: process.env.SQLSERVER_SAGRES19_USER,
-        host: process.env.SQLSERVER_SAGRES19_HOST,
-        database: process.env.SQLSERVER_SAGRES19_Database,
-        password: process.env.SQLSERVER_SAGRES19_PASS,
-        port: parseInt(process.env.SQLSERVER_SAGRES19_PORT),
-        driver: 'tedious',
-        stream: false,
-        dialect: 'mssql',
+    AL_DB: {
+        username: process.env.POSTGRES_USER,
+        host: process.env.POSTGRES_HOST,
+        database: process.env.POSTGRES_DB,
+        password: process.env.POSTGRES_PASSWORD,
+        port: process.env.POSTGRES_PORT,
+        dialect: 'postgres',
         options: {
             trustedConnection: true,
             encrypt: false,

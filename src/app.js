@@ -11,6 +11,7 @@ const app = express();
 // ==> Rotas da API:
 const licitacoesRoute = require('./routes/licitacoes.routes');
 const regioesRoute = require('./routes/regioes.routes');
+const contratosRoute = require('./routes/contratos.routes');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use(cors());
 // Adicione novas rotas abaixo
 app.use('/api/', licitacoesRoute);
 app.use('/api/', regioesRoute);
+app.use('/api/', contratosRoute);
 
 module.exports = app;
 
