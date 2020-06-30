@@ -11,12 +11,13 @@ const Op = models.Sequelize.Op;
 const BAD_REQUEST = 400;
 const SUCCESS = 200;
 
-// Retorna todas os contratos de um município 
+// Retorna todas os contratos de um município que possuem ID da licitação 
 exports.getContratosPorMunicipio = (req, res) => {
     const cd_municipio = req.query.cd_municipio
     
     Contrato.findAll({ where: {
-        cd_municipio: cd_municipio
+        cd_municipio: cd_municipio,
+        id_licitacao: { [Op.ne]: null}
     }})
     .then(contratos => res.status(SUCCESS).json(contratos))
     .catch(err => res.status(BAD_REQUEST).json({ err }));
