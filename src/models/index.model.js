@@ -9,6 +9,7 @@ const { sequelize } = require("../config/db.config");
 const LicitacaoModel = "./licitacao.model.js";
 const MunicipioModel = "./municipio.model.js";
 const ContratoModel = "./contrato.model.js";
+const ParticipanteModel = "./participante.model.js"
 
 global.models = {
     Sequelize: Sequelize,
@@ -16,7 +17,8 @@ global.models = {
     // Adicione os módulos abaixo
     licitacao: sequelize.import(LicitacaoModel),
     municipio: sequelize.import(MunicipioModel),
-    contrato: sequelize.import(ContratoModel)
+    contrato: sequelize.import(ContratoModel),
+    participante: sequelize.import(ParticipanteModel)
 };
 
 Object.keys(global.models).forEach(modelName => {
