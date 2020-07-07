@@ -11,17 +11,16 @@ const Op = models.Sequelize.Op;
 const BAD_REQUEST = 400;
 const SUCCESS = 200;
 
-// Retorna todas os contratos de um município 
+// Retorna todas os contratos de um município que possuem ID da licitação 
 exports.getContratosPorMunicipio = (req, res) => {
     const cd_municipio = req.query.cd_municipio
-
-    Contrato.findAll({
-        where: {
-            cd_municipio: cd_municipio
-        }
-    })
-        .then(contratos => res.status(SUCCESS).json(contratos))
-        .catch(err => res.status(BAD_REQUEST).json({ err }));
+    
+    Contrato.findAll({ where: {
+        cd_municipio: cd_municipio,
+        id_licitacao: { [Op.ne]: null}
+    }})
+    .then(contratos => res.status(SUCCESS).json(contratos))
+    .catch(err => res.status(BAD_REQUEST).json({ err }));
 };
 
 // Recupera o contrato pelo ID
@@ -51,7 +50,10 @@ exports.getContratosByLicitacao = (req, res) => {
 }
 
 exports.getContratosByQuery = (req, res) => {
-    let query = 'SELECT \
+
+    const termos = req.query.termo.split(' ').join(' & ')
+
+    let query = `SELECT \
         id_contrato, \
             de_obs \
         FROM \
@@ -59,19 +61,19 @@ exports.getContratosByQuery = (req, res) => {
                 SELECT \
                 *, \
                 to_tsvector( \
-                    contrato.language:: regconfig, \
+                    contrato.language::regconfig, \
                     contrato.de_obs \
                 ) AS document \
             FROM \
                 contrato \
             ) p_search \
         WHERE \
-        p_search.document @@to_tsquery("portuguese", "hospital") \
+        p_search.document @@to_tsquery('portuguese', '${termos}') \
         ORDER BY \
         ts_rank( \
             p_search.document, \
-            to_tsquery("portuguese", "hospital") \
-        ) DESC; '
+            to_tsquery('portuguese', '${termos}') \
+        ) DESC; `
 
     models.sequelize.query(query, {
         model: Contrato,

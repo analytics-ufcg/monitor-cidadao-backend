@@ -7,7 +7,7 @@ module.exports = (sequelize, type) => {
     Licitacao = sequelize.define(
         "licitacao",
         {
-            id_licitacao: { 
+            id_licitacao: {
                 type: type.STRING,
                 primaryKey: true
             },
@@ -23,12 +23,26 @@ module.exports = (sequelize, type) => {
             de_obs: type.STRING,
             dt_mes_ano: type.STRING,
             registro_cge: type.STRING,
-            tp_regime_execucao: type.INTEGER
+            tp_regime_execucao: type.INTEGER,
+            de_ugestora: type.STRING,
+            de_tipo_licitacao : type.STRING
         },
         {
             freezeTableName: true,
             timestamps: false
         }
     );
+    Licitacao.associate = function (models) {
+        Licitacao.hasMany(models.contrato, {
+            foreignKey: "id_licitacao",
+            sourceKey: "id_licitacao",
+            as: "contratosLicitacao"
+        });
+        Licitacao.hasMany(models.participante, {
+            foreignKey: "id_licitacao",
+            sourceKey: "id_licitacao",
+            as: "participantesLicitacao"
+        });
+    }
     return Licitacao;
 };
