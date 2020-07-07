@@ -39,7 +39,10 @@ exports.getLicitacaoById = (req, res) => {
             },
             {
                 model: Participante,
-                as: "participantesLicitacao"
+                as: "participantesLicitacao",
+                where: {
+                    nu_cpfcnpj: { [Op.ne]: '00000000000000'}
+                }
             }
         ],
         where: {
