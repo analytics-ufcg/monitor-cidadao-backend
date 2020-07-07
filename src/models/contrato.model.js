@@ -30,6 +30,7 @@ module.exports = (sequelize, type) => {
             foto: type.STRING,               
             planilha: type.STRING,           
             ordem_servico : type.STRING,
+            language : type.STRING,
             de_ugestora : type.STRING,
             no_fornecedor : type.STRING
         },

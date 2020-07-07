@@ -32,8 +32,8 @@ exports.getContratoById = (req, res) => {
             id_contrato: id
         }
     })
-    .then(contratos => res.json(contratos))
-    .catch(err => res.status(BAD_REQUEST).json({ err }));
+        .then(contratos => res.json(contratos))
+        .catch(err => res.status(BAD_REQUEST).json({ err }));
 }
 
 // Recupera todos os contratos de uma licitação
@@ -45,6 +45,39 @@ exports.getContratosByLicitacao = (req, res) => {
             id_licitacao: id_licitacao
         }
     })
-    .then(contratos => res.json(contratos))
-    .catch(err => res.status(BAD_REQUEST).json({ err }));
+        .then(contratos => res.json(contratos))
+        .catch(err => res.status(BAD_REQUEST).json({ err }));
+}
+
+exports.getContratosByQuery = (req, res) => {
+
+    const termos = req.query.termo.split(' ').join(' & ')
+
+    let query = `SELECT \
+        id_contrato, \
+            de_obs \
+        FROM \
+            ( \
+                SELECT \
+                *, \
+                to_tsvector( \
+                    contrato.language::regconfig, \
+                    contrato.de_obs \
+                ) AS document \
+            FROM \
+                contrato \
+            ) p_search \
+        WHERE \
+        p_search.document @@to_tsquery('portuguese', '${termos}') \
+        ORDER BY \
+        ts_rank( \
+            p_search.document, \
+            to_tsquery('portuguese', '${termos}') \
+        ) DESC; `
+
+    models.sequelize.query(query, {
+        model: Contrato,
+        mapToModel: true
+    }).then(Contrato => res.status(SUCCESS).json(Contrato))
+        .catch(err => res.status(BAD_REQUEST).json({ err }));
 }
