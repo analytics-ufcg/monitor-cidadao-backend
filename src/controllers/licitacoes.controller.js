@@ -7,6 +7,7 @@
 const models = require("../models/index.model");
 const Contrato = models.contrato;
 const Licitacao = models.licitacao;
+const Participante = models.participante;
 const Op = models.Sequelize.Op;
 
 const BAD_REQUEST = 400;
@@ -35,6 +36,13 @@ exports.getLicitacaoById = (req, res) => {
             {
                 model: Contrato,
                 as: "contratosLicitacao"
+            },
+            {
+                model: Participante,
+                as: "participantesLicitacao",
+                where: {
+                    nu_cpfcnpj: { [Op.ne]: '00000000000000'}
+                }
             }
         ],
         where: {

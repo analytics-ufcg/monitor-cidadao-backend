@@ -29,7 +29,10 @@ module.exports = (sequelize, type) => {
             dt_recebimento: type.DATE,     
             foto: type.STRING,               
             planilha: type.STRING,           
-            ordem_servico : type.STRING
+            ordem_servico : type.STRING,
+            language : type.STRING,
+            de_ugestora : type.STRING,
+            no_fornecedor : type.STRING
         },
         {
             freezeTableName: true,
