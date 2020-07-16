@@ -55,10 +55,10 @@ exports.getContratosByQuery = (req, res) => {
 
     let query = `SELECT \
         id_contrato, \
-            de_obs, \
+             de_obs, \
             de_ugestora, \
-            vl_total_contrato,
-            nu_contrato \
+            vl_total_contrato, \
+            dt_ano \
         FROM \
             ( \
                 SELECT \
