@@ -11,18 +11,6 @@ const Op = models.Sequelize.Op;
 const BAD_REQUEST = 400;
 const SUCCESS = 200;
 
-function removeEmptyTermos(query) {
-  var termos = query.termo;
-
-  for (const key of Object.keys(termos)) {
-    if (termos[key] === "") {
-      delete termos[key];
-    }
-  }
-
-  return termos;
-}
-
 // Retorna todas os contratos de um município que possuem ID da licitação
 exports.getContratosPorMunicipio = (req, res) => {
     const cd_municipio = req.query.cd_municipio
