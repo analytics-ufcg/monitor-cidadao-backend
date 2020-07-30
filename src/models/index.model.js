@@ -10,6 +10,7 @@ const LicitacaoModel = "./licitacao.model.js";
 const MunicipioModel = "./municipio.model.js";
 const ContratoModel = "./contrato.model.js";
 const ParticipanteModel = "./participante.model.js"
+const PrevisaoModel = "./previsao.model.js"
 
 global.models = {
     Sequelize: Sequelize,
@@ -18,7 +19,8 @@ global.models = {
     licitacao: sequelize.import(LicitacaoModel),
     municipio: sequelize.import(MunicipioModel),
     contrato: sequelize.import(ContratoModel),
-    participante: sequelize.import(ParticipanteModel)
+    participante: sequelize.import(ParticipanteModel),
+    previsao: sequelize.import(PrevisaoModel)
 };
 
 Object.keys(global.models).forEach(modelName => {
