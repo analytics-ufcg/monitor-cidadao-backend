@@ -6,6 +6,8 @@
 
 const models = require("../models/index.model");
 const Contrato = models.contrato;
+const Previsao = models.previsao;
+
 const Op = models.Sequelize.Op;
 
 const BAD_REQUEST = 400;
@@ -15,9 +17,17 @@ const SUCCESS = 200;
 exports.getContratosPorMunicipio = (req, res) => {
     const cd_municipio = req.query.cd_municipio
 
-    Contrato.findAll({ where: {
-        cd_municipio: cd_municipio,
-        id_licitacao: { [Op.ne]: null}
+    Contrato.findAll({ 
+            include: [
+                {
+                    model: Previsao,
+                    as: "previsaoContrato"
+                }
+            ],
+            where: {
+            cd_municipio: cd_municipio,
+            id_licitacao: { [Op.ne]: null
+        }
     }})
     .then(contratos => res.status(SUCCESS).json(contratos))
     .catch(err => res.status(BAD_REQUEST).json({ err }));
@@ -28,6 +38,12 @@ exports.getContratoById = (req, res) => {
     const id = req.params.id
 
     Contrato.findOne({
+        include: [
+            {
+                model: Previsao,
+                as: "previsaoContrato"
+            }
+        ],
         where: {
             id_contrato: id
         }
@@ -58,7 +74,15 @@ exports.getContratosByQuery = (req, res) => {
              de_obs, \
             de_ugestora, \
             vl_total_contrato, \
-            dt_ano \
+            dt_ano, \
+            (\
+                SELECT \
+                    vig_prob_1 \
+                FROM \
+                    previsao \
+                WHERE \
+                    p_search.id_contrato = previsao.id_contrato\ 
+            ) \
         FROM \
             ( \
                 SELECT \
