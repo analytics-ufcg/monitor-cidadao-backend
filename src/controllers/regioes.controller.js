@@ -16,3 +16,16 @@ exports.getMunicipios = async (req, res) => {
     .then(municipios => res.status(SUCCESS).json(municipios))
     .catch(err => res.status(BAD_REQUEST).json({ err }));
 };
+
+// Recupera o município pelo ID
+exports.getMunicipioById = (req, res) => {
+    const id = req.params.id
+
+    Municipio.findOne({
+        where: {
+            cd_municipio: id
+        }
+    })
+        .then(municipios => res.json(municipios))
+        .catch(err => res.status(BAD_REQUEST).json({ err }));
+}

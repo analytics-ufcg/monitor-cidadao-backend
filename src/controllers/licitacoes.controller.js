@@ -8,6 +8,8 @@ const models = require("../models/index.model");
 const Contrato = models.contrato;
 const Licitacao = models.licitacao;
 const Participante = models.participante;
+const Previsao = models.previsao;
+
 const Op = models.Sequelize.Op;
 
 const BAD_REQUEST = 400;
@@ -35,7 +37,13 @@ exports.getLicitacaoById = (req, res) => {
         include: [
             {
                 model: Contrato,
-                as: "contratosLicitacao"
+                as: "contratosLicitacao",
+                include: [
+                    {
+                        model: Previsao,
+                        as: "previsaoContrato"
+                    }
+                ]
             },
             {
                 model: Participante,
