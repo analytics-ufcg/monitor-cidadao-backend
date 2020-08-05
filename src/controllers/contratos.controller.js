@@ -9,6 +9,7 @@ const Contrato = models.contrato;
 const Previsao = models.previsao;
 
 const Op = models.Sequelize.Op;
+const sequelize = models.sequelize;
 
 const BAD_REQUEST = 400;
 const SUCCESS = 200;
@@ -64,6 +65,32 @@ exports.getContratosByLicitacao = (req, res) => {
         .then(contratos => res.json(contratos))
         .catch(err => res.status(BAD_REQUEST).json({ err }));
 }
+
+// Retorna todas os contratos, ordenados pelo Risco
+exports.getContratosPorRisco = (req, res) => {
+
+    Contrato.findAll({ 
+        include: [
+            {
+                model: Previsao,
+                as: "previsaoContrato"
+            }
+        ],
+        where: {
+            id_licitacao: { [Op.ne]: null },
+            where: sequelize.where( sequelize.col('pr_vigencia'), '>=', sequelize.literal('CURRENT_TIMESTAMP'))
+        },
+        order: [
+            [
+                {model: Previsao, as: 'previsaoContrato'},
+                'vig_prob_1',
+                'DESC'
+            ]
+        ]
+    })
+    .then(contratos => res.status(SUCCESS).json(contratos))
+    .catch(err => res.status(BAD_REQUEST).json({ err }));
+};
 
 exports.getContratosByQuery = (req, res) => {
 
