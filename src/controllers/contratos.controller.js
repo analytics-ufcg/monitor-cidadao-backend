@@ -73,7 +73,10 @@ exports.getContratosPorRisco = (req, res) => {
         include: [
             {
                 model: Previsao,
-                as: "previsaoContrato"
+                as: "previsaoContrato",
+                where: {
+                    id_contrato: { [Op.ne]: null }
+                }
             }
         ],
         where: {
