@@ -15,15 +15,15 @@ const Op = models.Sequelize.Op;
 const BAD_REQUEST = 400;
 const SUCCESS = 200;
 
-// Retorna todas as licitações não vazias de um município 
+// Retorna todas as licitações não vazias de um município
 exports.getLicitacoesPorMunicipio = (req, res) => {
     const cd_municipio = req.query.cd_municipio
 
     Licitacao.findAll({ where: {
         cd_municipio: cd_municipio,
-        nu_licitacao: { [Op.ne]: '000000000'} 
+        nu_licitacao: { [Op.ne]: '000000000'}
     },
-   
+
 })
     .then(licitacoes => res.status(SUCCESS).json(licitacoes))
     .catch(err => res.status(BAD_REQUEST).json({ err }));
@@ -50,7 +50,8 @@ exports.getLicitacaoById = (req, res) => {
                 as: "participantesLicitacao",
                 where: {
                     nu_cpfcnpj: { [Op.ne]: '00000000000000'}
-                }
+                },
+                required: false 
             }
         ],
         where: {
