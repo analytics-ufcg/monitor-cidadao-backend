@@ -12,6 +12,7 @@ const app = express();
 const licitacoesRoute = require('./routes/licitacoes.routes');
 const regioesRoute = require('./routes/regioes.routes');
 const contratosRoute = require('./routes/contratos.routes');
+const previsoesRoute = require('./routes/previsoes.routes');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use(cors());
 app.use('/api/', licitacoesRoute);
 app.use('/api/', regioesRoute);
 app.use('/api/', contratosRoute);
+app.use('/api/', previsoesRoute);
 
 module.exports = app;
 

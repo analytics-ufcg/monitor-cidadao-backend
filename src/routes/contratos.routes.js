@@ -20,8 +20,6 @@ router.get('/licitacoes/:id_licitacao/contratos', contratosController.getContrat
 
 router.get('/search', contratosController.getContratosByQuery)
 
-// Busca todos os contratos
-// Exemplo: http://localhost:3000/api/contratos/riscos/paraiba
-router.get('/contratos/riscos/paraiba', contratosController.getContratosPorRisco)
+
 
 module.exports = router;
