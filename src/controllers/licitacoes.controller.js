@@ -37,13 +37,7 @@ exports.getLicitacaoById = (req, res) => {
         include: [
             {
                 model: Contrato,
-                as: "contratosLicitacao",
-                include: [
-                    {
-                        model: Previsao,
-                        as: "previsaoContrato"
-                    }
-                ]
+                as: "contratosLicitacao"
             },
             {
                 model: Participante,

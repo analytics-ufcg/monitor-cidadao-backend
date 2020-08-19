@@ -85,7 +85,7 @@ exports.getContratosByQuery = (req, res) => {
             to_tsquery('portuguese', '${termos}') \
         ) DESC; `
 
-    models.sequelize.query(query, {
+    sequelize.query(query, {
         model: Contrato,
         mapToModel: true
     }).then(Contrato => res.status(SUCCESS).json(Contrato))

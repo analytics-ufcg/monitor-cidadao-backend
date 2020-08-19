@@ -7,7 +7,7 @@ const router = require('express-promise-router')();
 const previsoesController = require('../controllers/previsoes.controller');
 
 // Busca todos as previsões cadastradas
-// Exemplo: http://localhost:3000/api/previoes
+// Exemplo: http://localhost:3000/api/previsoes
 router.get('/previsoes', previsoesController.getRiscos)
 
 module.exports = router;

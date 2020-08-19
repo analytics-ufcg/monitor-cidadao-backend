@@ -18,6 +18,8 @@ router.get('/contratos/:id', contratosController.getContratoById)
 // Exemplo: http://localhost:3000/api/licitacoes/b06aa4ae558ddaaaeecac2ca4aa2e186/contratos
 router.get('/licitacoes/:id_licitacao/contratos', contratosController.getContratosByLicitacao)
 
+// Busca os contratos a partir de um termo
+// Exemplo: http://localhost:3000/api/search?termo=financeira
 router.get('/search', contratosController.getContratosByQuery)
 
 
