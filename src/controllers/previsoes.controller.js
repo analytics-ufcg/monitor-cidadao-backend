@@ -4,9 +4,10 @@
  */
 
 const models = require("../models/index.model");
+const { previsao } = require("../models/index.model");
 const Previsao = models.previsao;
 
-const sequelize = models.sequelize_aldb;
+const sequelize = models.sequelize_mcdb;
 
 const BAD_REQUEST = 400;
 const SUCCESS = 200;
@@ -15,6 +16,6 @@ const SUCCESS = 200;
 exports.getRiscos = (req, res) => {
 
     Previsao.findAll()
-    .then(municipios => res.status(SUCCESS).json(municipios))
+    .then(previsao => res.status(SUCCESS).json(previsao))
     .catch(err => res.status(BAD_REQUEST).json({ err }));
 };

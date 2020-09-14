@@ -7,14 +7,14 @@ module.exports = (sequelize, type) => {
     Previsao = sequelize.define(
         "previsao_prod",
         {
-            id_previsao: { 
+            id_previsao_prod: { 
                 type: type.STRING,
                 primaryKey: true
             },
-            data_previsao: type.DATE,
-            id_experimento: type.STRING,
             id_contrato: type.STRING,
-            previsao_risco: type.INTEGER
+            id_experimento: type.STRING,
+            risco: type.INTEGER,
+            timestamp: type.DATE
         },
         {
             freezeTableName: true,
