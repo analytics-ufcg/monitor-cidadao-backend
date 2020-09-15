@@ -12,6 +12,7 @@ const sequelize = models.sequelize_aldb;
 
 const BAD_REQUEST = 400;
 const SUCCESS = 200;
+const dataAtual = new Date()
 
 // Retorna todas os contratos de um município que possuem ID da licitação
 exports.getContratosPorMunicipio = (req, res) => {
@@ -50,6 +51,19 @@ exports.getContratosByLicitacao = (req, res) => {
         where: {
             id_licitacao: id_licitacao
         }
+    })
+        .then(contratos => res.json(contratos))
+        .catch(err => res.status(BAD_REQUEST).json({ err }));
+}
+
+
+exports.getContratosVigentes  = (req, res) => {
+    const pr_vigencia = req.params.pr_vigencia
+
+    Contrato.findAll({
+        where: {
+            pr_vigencia:{ [Op.gte]: dataAtual}       
+         }
     })
         .then(contratos => res.json(contratos))
         .catch(err => res.status(BAD_REQUEST).json({ err }));
