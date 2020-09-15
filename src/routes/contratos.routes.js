@@ -23,8 +23,8 @@ router.get('/licitacoes/:id_licitacao/contratos', contratosController.getContrat
 router.get('/search', contratosController.getContratosByQuery)
 
 // Busca os contratos vigentes
-// Exemplo: http://localhost:3000/api/vigentes
-router.get('/vigentes', contratosController.getContratosVigentes)
+// Exemplo: http://localhost:3000/api/contratos/vigentes/riscos
+router.get('/contratos/vigentes/riscos', contratosController.getContratosVigentes)
 
 
 module.exports = router;

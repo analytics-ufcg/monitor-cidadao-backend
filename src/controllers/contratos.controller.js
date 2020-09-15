@@ -12,7 +12,6 @@ const sequelize = models.sequelize_aldb;
 
 const BAD_REQUEST = 400;
 const SUCCESS = 200;
-const dataAtual = new Date()
 
 // Retorna todas os contratos de um município que possuem ID da licitação
 exports.getContratosPorMunicipio = (req, res) => {
@@ -58,11 +57,11 @@ exports.getContratosByLicitacao = (req, res) => {
 
 
 exports.getContratosVigentes  = (req, res) => {
-    const pr_vigencia = req.params.pr_vigencia
 
     Contrato.findAll({
         where: {
-            pr_vigencia:{ [Op.gte]: dataAtual}       
+            id_licitacao: { [Op.ne]: null },
+            where: sequelize.where( sequelize.col('pr_vigencia'), '>=', sequelize.literal('CURRENT_TIMESTAMP'))      
          }
     })
         .then(contratos => res.json(contratos))
