@@ -41,12 +41,5 @@ module.exports = (sequelize, type) => {
 
     );
 
-    Contrato.associate = function (models) {
-        Contrato.hasOne(models.previsao, {
-            foreignKey: "id_contrato",
-            sourceKey: "id_contrato",
-            as: "previsaoContrato"
-        });
-    }
     return Contrato;
 };

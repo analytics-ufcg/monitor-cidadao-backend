@@ -22,5 +22,18 @@ module.exports = {
             encrypt: false,
             enableArithAbort: true
         }
-    } //, AL_DB {...}
+    },
+    MC_DB: {
+        username: process.env.POSTGRES_MCDB_USER,
+        host: process.env.POSTGRES_MCDB_HOST,
+        database: process.env.POSTGRES_MCDB_DB,
+        password: process.env.POSTGRES_MCDB_PASSWORD,
+        port: process.env.POSTGRES_MCDB_PORT,
+        dialect: 'postgres',
+        options: {
+            trustedConnection: true,
+            encrypt: false,
+            enableArithAbort: true
+        }
+    }
 }
