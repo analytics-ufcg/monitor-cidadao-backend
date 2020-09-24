@@ -6,6 +6,7 @@
 
 const models = require("../models/index.model");
 const Contrato = models.contrato;
+const Pagamento = models.pagamento;
 
 const Op = models.Sequelize.Op;
 const sequelize = models.sequelize_aldb;
@@ -18,6 +19,14 @@ exports.getContratosPorMunicipio = (req, res) => {
     const cd_municipio = req.query.cd_municipio
 
     Contrato.findAll({
+        attributes: ['id_contrato', [sequelize.fn('sum', sequelize.col('pagamento.vl_pagamento')), 'total']],
+        include: {
+            model: Pagamento,
+            as: "pagamentosContrato", 
+            attributes: [],
+            required: false 
+        },
+        group: ['contrato.id_contrato'],
         where: {
             cd_municipio: cd_municipio,
             id_licitacao: {
@@ -34,6 +43,11 @@ exports.getContratoById = (req, res) => {
     const id = req.params.id
 
     Contrato.findOne({
+        include: {
+            model: Pagamento,
+            as: "pagamentosContrato",
+            required: false 
+        },
         where: {
             id_contrato: id
         }

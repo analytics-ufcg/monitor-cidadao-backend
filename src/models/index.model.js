@@ -10,9 +10,10 @@ const { sequelize_mcdb } = require("../config/db.config");
 const LicitacaoModel = "./licitacao.model.js";
 const MunicipioModel = "./municipio.model.js";
 const ContratoModel = "./contrato.model.js";
-const ParticipanteModel = "./participante.model.js"
+const ParticipanteModel = "./participante.model.js";
+const PagamentoModel = "./pagamento.model.js";
 
-const PrevisaoModel = "./previsao.model.js"
+const PrevisaoModel = "./previsao.model.js";
 
 global.models = {
     Sequelize: Sequelize,
@@ -24,7 +25,8 @@ global.models = {
     municipio: sequelize_aldb.import(MunicipioModel),
     contrato: sequelize_aldb.import(ContratoModel),
     participante: sequelize_aldb.import(ParticipanteModel),
-    
+    pagamento: sequelize_aldb.import(PagamentoModel),
+
     // Adicione os módulos do MC_DB abaixo
     previsao: sequelize_mcdb.import(PrevisaoModel),
 };
