@@ -12,6 +12,7 @@ const MunicipioModel = "./municipio.model.js";
 const ContratoModel = "./contrato.model.js";
 const ParticipanteModel = "./participante.model.js";
 const PagamentoModel = "./pagamento.model.js";
+const EmpenhoModel = "./empenho.model.js";
 
 const PrevisaoModel = "./previsao.model.js";
 
@@ -26,6 +27,7 @@ global.models = {
     contrato: sequelize_aldb.import(ContratoModel),
     participante: sequelize_aldb.import(ParticipanteModel),
     pagamento: sequelize_aldb.import(PagamentoModel),
+    empenho: sequelize_aldb.import(EmpenhoModel),
 
     // Adicione os módulos do MC_DB abaixo
     previsao: sequelize_mcdb.import(PrevisaoModel),

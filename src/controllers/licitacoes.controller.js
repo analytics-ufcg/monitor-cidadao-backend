@@ -11,6 +11,7 @@ const Participante = models.participante;
 const Previsao = models.previsao;
 
 const Op = models.Sequelize.Op;
+const sequelize = models.sequelize_aldb;
 
 const BAD_REQUEST = 400;
 const SUCCESS = 200;
@@ -37,7 +38,12 @@ exports.getLicitacaoById = (req, res) => {
         include: [
             {
                 model: Contrato,
-                as: "contratosLicitacao"
+                as: "contratosLicitacao",
+                include: [{
+                    model: Pagamento,
+                    as: "pagamentosContrato", 
+                    required: false 
+                }]
             },
             {
                 model: Participante,
