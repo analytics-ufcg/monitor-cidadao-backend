@@ -78,7 +78,9 @@ exports.getContratosByQuery = (req, res) => {
              de_obs, \
             de_ugestora, \
             vl_total_contrato, \
-            dt_ano \
+            dt_ano, \
+            nu_licitacao, \
+            nu_contrato  \
         FROM \
             ( \
                 SELECT \
@@ -86,7 +88,13 @@ exports.getContratosByQuery = (req, res) => {
                 to_tsvector( \
                     contrato.language::regconfig, \
                     contrato.de_obs \
-                ) AS document \
+                ) ||
+                to_tsvector( \
+                    contrato.nu_licitacao \
+                ) ||
+                to_tsvector( \
+                    contrato.nu_contrato \
+                )   AS document \
             FROM \
                 contrato \
             ) p_search \
