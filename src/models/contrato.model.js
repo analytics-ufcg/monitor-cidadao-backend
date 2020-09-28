@@ -40,6 +40,19 @@ module.exports = (sequelize, type) => {
         }
 
     );
+    Contrato.associate = function (models) {
+        Contrato.hasMany(models.pagamento, {
+            foreignKey: "id_contrato",
+            sourceKey: "id_contrato",
+            as: "pagamentosContrato"
+        });
+
+        Contrato.hasMany(models.empenho, {
+            foreignKey: "id_contrato",
+            sourceKey: "id_contrato",
+            as: "empenhosContrato"
+        });
+    }
 
     return Contrato;
 };
