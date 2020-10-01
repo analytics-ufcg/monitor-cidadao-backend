@@ -40,13 +40,19 @@ module.exports = (sequelize, type) => {
         }
 
     );
-
     Contrato.associate = function (models) {
-        Contrato.hasOne(models.previsao, {
+        Contrato.hasMany(models.pagamento, {
             foreignKey: "id_contrato",
             sourceKey: "id_contrato",
-            as: "previsaoContrato"
+            as: "pagamentosContrato"
+        });
+
+        Contrato.hasMany(models.empenho, {
+            foreignKey: "id_contrato",
+            sourceKey: "id_contrato",
+            as: "empenhosContrato"
         });
     }
+
     return Contrato;
 };
