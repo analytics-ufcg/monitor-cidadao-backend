@@ -8,7 +8,7 @@ const { sequelize_aldb } = require("../config/db.config");
 const { sequelize_mcdb } = require("../config/db.config");
 
 const LicitacaoModel = "./licitacao.model.js";
-const MunicipioModel = "./municipio.model.js";
+const RegiaoIBGEModel = "./regiao_ibge.model.js";
 const ContratoModel = "./contrato.model.js";
 const ParticipanteModel = "./participante.model.js";
 const PagamentoModel = "./pagamento.model.js";
@@ -23,7 +23,7 @@ global.models = {
 
     // Adicione os módulos do AL_DB abaixo
     licitacao: sequelize_aldb.import(LicitacaoModel),
-    municipio: sequelize_aldb.import(MunicipioModel),
+    regiaoIBGE: sequelize_aldb.import(RegiaoIBGEModel),
     contrato: sequelize_aldb.import(ContratoModel),
     participante: sequelize_aldb.import(ParticipanteModel),
     pagamento: sequelize_aldb.import(PagamentoModel),

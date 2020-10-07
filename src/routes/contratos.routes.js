@@ -7,7 +7,7 @@ const router = require('express-promise-router')();
 const contratosController = require('../controllers/contratos.controller');
 
 // Busca todos os contratos de um município
-// Exemplo: http://localhost:3000/api/contratos/municipio?cd_municipio=012
+// Exemplo: http://localhost:3000/api/contratos/municipio?cd_ibge=2501807
 router.get('/contratos/municipio', contratosController.getContratosPorMunicipio)
 
 // Busca um contrato pelo seu ID

@@ -17,7 +17,7 @@ const SUCCESS = 200;
 
 // Retorna todas os contratos de um município que possuem ID da licitação
 exports.getContratosPorMunicipio = (req, res) => {
-    const cd_municipio = req.query.cd_municipio
+    const cd_ibge = req.query.cd_ibge
 
     Contrato.findAll({
         attributes: {
@@ -31,7 +31,7 @@ exports.getContratosPorMunicipio = (req, res) => {
         },
         group: ['contrato.id_contrato'],
         where: {
-            cd_municipio: cd_municipio,
+            cd_ibge: cd_ibge,
             id_licitacao: {
                 [Op.ne]: null
             }
