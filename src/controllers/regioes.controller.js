@@ -5,25 +5,33 @@
  */
 
 const models = require("../models/index.model");
-const Municipio = models.municipio;
+const RegiaoIBGE = models.regiaoIBGE;
 
 const BAD_REQUEST = 400;
 const SUCCESS = 200;
 
+const Op = models.Sequelize.Op;
+
 // Retorna as 10 primeiras licitações (terá mudanças)
 exports.getMunicipios = async (req, res) => {
-    Municipio.findAll()
-    .then(municipios => res.status(SUCCESS).json(municipios))
-    .catch(err => res.status(BAD_REQUEST).json({ err }));
+    RegiaoIBGE.findAll({
+        where: {
+            uf: {
+                [Op.or]: ["25", "43"]
+            }
+        }
+    })
+        .then(municipios => res.status(SUCCESS).json(municipios))
+        .catch(err => res.status(BAD_REQUEST).json({ err }));
 };
 
 // Recupera o município pelo ID
 exports.getMunicipioById = (req, res) => {
     const id = req.params.id
 
-    Municipio.findOne({
+    RegiaoIBGE.findOne({
         where: {
-            cd_municipio: id
+            cd_ibge: id
         }
     })
         .then(municipios => res.json(municipios))

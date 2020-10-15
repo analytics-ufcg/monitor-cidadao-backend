@@ -13,7 +13,6 @@ module.exports = (sequelize, type) => {
             },
             id_licitacao: type.STRING,
             id_contrato: type.STRING,
-            cd_municipio: type.STRING,
             cd_u_gestora: type.INTEGER,
             dt_ano: type.INTEGER,
             cd_unid_orcamentaria: type.STRING,
@@ -45,7 +44,8 @@ module.exports = (sequelize, type) => {
             dt_mes_ano_referencia: type.STRING,
             tp_fonte_recursos: type.STRING,
             nu_cpf: type.STRING,
-            cd_sub_elemento_2: type.STRING
+            cd_sub_elemento_2: type.STRING,
+            cd_ibge : type.STRING
         },
         {
             freezeTableName: true,

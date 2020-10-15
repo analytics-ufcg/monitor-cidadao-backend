@@ -18,10 +18,10 @@ const SUCCESS = 200;
 
 // Retorna todas as licitações não vazias de um município
 exports.getLicitacoesPorMunicipio = (req, res) => {
-    const cd_municipio = req.query.cd_municipio
+    const cd_ibge = req.query.cd_ibge
 
     Licitacao.findAll({ where: {
-        cd_municipio: cd_municipio,
+        cd_ibge: cd_ibge,
         nu_licitacao: { [Op.ne]: '000000000'}
     },
 

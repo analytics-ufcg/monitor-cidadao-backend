@@ -7,7 +7,7 @@ const router = require('express-promise-router')();
 const licitacoesController = require('../controllers/licitacoes.controller');
 
 // Retorna todas as licitacoes de um município
-// Exemplo: http://localhost:3000/api/licitacoes/municipio?cd_municipio=012
+// Exemplo: http://localhost:3000/api/licitacoes/municipio?cd_ibge=2501807
 router.get('/licitacoes/municipio', licitacoesController.getLicitacoesPorMunicipio)
 
 // Busca a licitação pelo seu ID
