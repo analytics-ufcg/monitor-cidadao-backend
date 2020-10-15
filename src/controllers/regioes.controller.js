@@ -10,11 +10,15 @@ const RegiaoIBGE = models.regiaoIBGE;
 const BAD_REQUEST = 400;
 const SUCCESS = 200;
 
+const Op = models.Sequelize.Op;
+
 // Retorna as 10 primeiras licitações (terá mudanças)
 exports.getMunicipios = async (req, res) => {
     RegiaoIBGE.findAll({
         where: {
-            uf: '25'
+            uf: {
+                [Op.or]: ["25", "43"]
+            }
         }
     })
         .then(municipios => res.status(SUCCESS).json(municipios))
