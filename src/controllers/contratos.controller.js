@@ -26,8 +26,8 @@ exports.getContratosPorMunicipio = (req, res) => {
         include: {
             model: Pagamento,
             attributes: [],
-            as: "pagamentosContrato", 
-            required: false 
+            as: "pagamentosContrato",
+            required: false
         },
         group: ['contrato.id_contrato'],
         where: {
@@ -50,13 +50,13 @@ exports.getContratoById = (req, res) => {
             model: Pagamento,
             attributes: ['dt_pagamento', 'vl_pagamento'],
             as: "pagamentosContrato",
-            required: false 
+            required: false
         },
         {
             model: Empenho,
             attributes: ['dt_empenho','vl_empenho'],
             as: "empenhosContrato",
-            required: false 
+            required: false
         },
     ],
         where: {
@@ -86,7 +86,7 @@ exports.getContratosVigentes  = (req, res) => {
     Contrato.findAll({
         where: {
             id_licitacao: { [Op.ne]: null },
-            where: sequelize.where( sequelize.col('pr_vigencia'), '>=', sequelize.literal('CURRENT_TIMESTAMP'))      
+            where: sequelize.where( sequelize.col('pr_vigencia'), '>=', sequelize.literal('CURRENT_TIMESTAMP'))
          }
     })
         .then(contratos => res.json(contratos))
@@ -105,7 +105,8 @@ exports.getContratosByQuery = (req, res) => {
             vl_total_contrato, \
             dt_ano, \
             nu_licitacao, \
-            nu_contrato  \
+            nu_contrato,  \
+            dt_assinatura \
         FROM \
             ( \
                 SELECT \
